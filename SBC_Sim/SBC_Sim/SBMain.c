@@ -68,18 +68,18 @@ int Test_List(int Num_Bits, int Taken_Not_Taken_List[MAX_TABLE_SIZE], int Chosen
 	int Prediction = Num_Bits / 2;
 	for (r = 0; r < Chosen_Table_Size; r++)
 	{
-		if (Prediction > Num_Bits / 2)
+		if (Prediction >= (Num_Bits / 2))
 		{
 			// predict taken
 			// update prediction & record miss or hit
 			if (Taken_Not_Taken_List[r] == 1)
 			{
-				Prediction_Plus(Prediction, Num_Bits);
+				Prediction = Prediction_Plus(Prediction, Num_Bits);
 				Hit_Total++;
 			}
 			else
 			{
-				Prediction_Minus(Prediction);
+				Prediction = Prediction_Minus(Prediction);
 				Hit_Total--;
 			}
 		}
@@ -89,12 +89,12 @@ int Test_List(int Num_Bits, int Taken_Not_Taken_List[MAX_TABLE_SIZE], int Chosen
 			// update prediction & record miss or hit
 			if (Taken_Not_Taken_List[r] == 1)
 			{
-				Prediction_Plus(Prediction, Num_Bits);
+				Prediction = Prediction_Plus(Prediction, Num_Bits);
 				Hit_Total--;
 			}
 			else
 			{
-				Prediction_Minus(Prediction);
+				Prediction = Prediction_Minus(Prediction);
 				Hit_Total++;
 			}
 		}
@@ -133,11 +133,11 @@ int main()
 
 	
 	Hit_Total = Test_List(Bit_Size, All_Taken, Table_Size);
-	printf("\nAll Taken:\nHits = %d\nMisses = %d\nHit Percentage = %d%\n", (Table_Size / 2) + Hit_Total, ((Table_Size / 2) + Hit_Total) - Hit_Total, ((Hit_Total * 100) / (Table_Size * 100)));
+	printf("\nAll Taken:\nHits = %d\nMisses = %d\n", (Table_Size + Hit_Total) / 2, Table_Size-((Table_Size + Hit_Total) / 2));
 	Hit_Total = Test_List(Bit_Size, None_Taken, Table_Size);
-	printf("\nNone_Taken:\nHits = %d\nMisses = %d\nHit Percentage = %d%\n", (Table_Size / 2) + Hit_Total, (Table_Size / 2) - Hit_Total, ((Hit_Total * 100) / (Table_Size * 100)));
+	printf("\nNone Taken:\nHits = %d\nMisses = %d\n", (Table_Size + Hit_Total) / 2, Table_Size - ((Table_Size + Hit_Total) / 2));
 	Hit_Total = Test_List(Bit_Size, Alternating, Table_Size);
-	printf("\nAlternating:\nHits = %d\nMisses = %d\nHit Percentage = %d%\n", (Table_Size / 2) + Hit_Total, (Table_Size / 2) - Hit_Total, ((Hit_Total * 100) / (Table_Size * 100)));
+	printf("\nAlternating:\nHits = %d\nMisses = %d\n", (Table_Size + Hit_Total) / 2, Table_Size - ((Table_Size + Hit_Total) / 2));
 
 	printf("\nPress enter to continue ...\n");
 	getchar();

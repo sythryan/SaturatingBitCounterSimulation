@@ -1,4 +1,4 @@
-﻿Build started 12/8/2015 2:49:55 PM.
+﻿Build started 12/9/2015 10:27:21 AM.
      1>Project "C:\Users\sryan\Documents\GitHub\SaturatingBitCounterSimulation\SBC_Sim\SBC_Sim\SBC_Sim.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt SBMain.c
@@ -10,4 +10,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.38
+Time Elapsed 00:00:00.32
