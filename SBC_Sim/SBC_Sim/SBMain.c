@@ -11,10 +11,13 @@
 #define MAX_TABLE_SIZE 10000000
 #define MIN_TABLE_SIZE 1
 
+#define MAX_BIT_SIZE 200
+#define MIN_BIT_SIZE 1
+
 #ifdef BASIC_TABLES
 int All_Taken[MAX_TABLE_SIZE];
 int None_Taken[MAX_TABLE_SIZE];
-int Alternating[MAX_TABLE_SIZE];
+int Alternating[MAX_TABLE_SIZE];w
 #endif // BASIC_TABLES
 
 #ifdef RANDOM_TABLES
@@ -29,12 +32,11 @@ int Custom_Table[MAX_TABLE_SIZE];
 
 void Populate_Tables(int Chosen_Table_Size)
 {
+#if (defined(BASIC_TABLES) || defined(RANDOM_TABLES))
 	int r;
-	srand(time(NULL));
-	int random = rand();
-
 	/* Populate the tables */
 	printf("Populating Tables...\n");
+#endif; // BASIC_TABLES or RANDOM_TABLES
 #ifdef BASIC_TABLES
 	for (r = 0; r < Chosen_Table_Size; r++)
 	{
@@ -60,6 +62,10 @@ void Populate_Tables(int Chosen_Table_Size)
 	}
 #endif // BASIC TABLES
 #ifdef RANDOM_TABLES
+
+	srand(time(NULL));
+	int random = rand();
+
 	for (r = 0; r < Chosen_Table_Size; r++)
 	{
 		random = rand();
@@ -178,7 +184,6 @@ int main()
 {
 
 	int Hit_Total = 0;
-	int Miss_Total = 0;
 	int Bit_Size = 0;
 	int Table_Size = 0;
 	char str[50] = { 0 };
@@ -199,9 +204,9 @@ int main()
 
 		do
 		{
-			printf("\nChoose a size for the saturating bit counter. \nEnter an integer from 1 to : 1,000,000 bits: ");
+			printf("\nChoose a size for the saturating bit counter. \nEnter an integer from %d to : %d: ", MIN_BIT_SIZE, MAX_BIT_SIZE);
 
-		} while (((scanf("%d%c", &Bit_Size, &c) != 2 || c != '\n') && clean_stdin()) || Bit_Size < MIN_TABLE_SIZE || Bit_Size > MAX_TABLE_SIZE);
+		} while (((scanf("%d%c", &Bit_Size, &c) != 2 || c != '\n') && clean_stdin()) || Bit_Size < MIN_BIT_SIZE || Bit_Size > MAX_BIT_SIZE);
 
 
 #ifdef CUSTOM_TABLES
